@@ -1,0 +1,33 @@
+app:
+  debug: true
+  port: 5000
+  host: 127.0.0.1
+
+scheduler:
+  data_crawl:
+    interval: 900 # seconds
+  data_train:
+    interval: 600
+
+data:
+  base_path : './data/'
+
+model:
+  name: 'ollama-deepseek-nomic-embed-text'
+  configuration:
+    ollama-mistral-nomic-embed-text:
+      chunk_size: 300
+      chunk_overlap: 100
+    ollama-deepseek-nomic-embed-text:
+      chunk_size: 300
+      chunk_overlap: 100
+    ollama-deepseek-nomic-embed-question:
+      chunk_size: 300
+      chunk_overlap: 100
+    openai-similarity-search-model:
+      openai:
+        key: '{{OPEN_AI_KEY_PLACEHOLDER}}'
+      ranking-groups: 3
+
+
+

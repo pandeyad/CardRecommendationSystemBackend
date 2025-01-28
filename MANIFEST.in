@@ -1,0 +1,3 @@
+# Include all YAML files in the 'configurations' directory
+recursive-include configurations *.yaml
+recursive-include configurations *.yml
