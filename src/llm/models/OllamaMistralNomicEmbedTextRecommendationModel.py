@@ -34,7 +34,7 @@ class OllamaMistralNomicEmbedTextRecommendationModel(IModelFunction):
         doc_splits = text_splitter.split_documents(docs_list)
         vectorstore = Chroma.from_documents(
             documents=doc_splits,
-            collection_name="ollama-mistral-nomic-embed-text-chromadb",
+            collection_name=f"{self.__model_name__}-chromadb",
             embedding=OllamaEmbeddings(model='nomic-embed-text'),
         )
         retriever = vectorstore.as_retriever()

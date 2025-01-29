@@ -17,7 +17,7 @@ from src.utils.python_util import get_nested
 
 class OllamaDeepseekNomicEmbedTextRecommendationModel(IModelFunction):
 
-    __model_name__ = 'ollama-deepseek-nomic-embed-text'
+    __model_name__ = 'ollama-deepseek-8b-nomic-embed-text'
 
     recommendation_model = None
 
@@ -35,7 +35,7 @@ class OllamaDeepseekNomicEmbedTextRecommendationModel(IModelFunction):
         doc_splits = text_splitter.split_documents(docs_list)
         vectorstore = Chroma.from_documents(
             documents=doc_splits,
-            collection_name="ollama-mistral-nomic-embed-question-chromadb",
+            collection_name=f"{self.__model_name__}-chromadb",
             embedding=OllamaEmbeddings(model='nomic-embed-text'),
         )
         retriever = vectorstore.as_retriever()

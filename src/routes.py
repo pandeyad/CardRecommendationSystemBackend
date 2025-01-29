@@ -7,7 +7,6 @@ from src import llm
 
 router = Blueprint("api", __name__)
 config = load_config()
-print(config)
 model:IModelFunction = llm.recommendation_app.get_model_instance(config['model']['name'])
 
 @router.route('/chat', methods=['POST'])

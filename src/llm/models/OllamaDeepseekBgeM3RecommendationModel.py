@@ -6,10 +6,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_ollama.embeddings import OllamaEmbeddings
-from src.llm.base_model_function import IModelFunction, recommendation_app
-
-from src.utils.python_util import get_nested
-
+from src.llm.base_model_function import IModelFunction
 
 # Question :
 # Which card will be best for me considering that my monthly spends are as follows : ~0.1 Million on online shopping,
@@ -17,7 +14,7 @@ from src.utils.python_util import get_nested
 
 class OllamaDeepseekNomicEmbedQuestionRecommendationModel(IModelFunction):
 
-    __model_name__ = 'ollama-deepseek-nomic-embed-question'
+    __model_name__ = 'ollama-deepseek-8b-bge-m3'
 
     recommendation_model = None
 
@@ -35,8 +32,8 @@ class OllamaDeepseekNomicEmbedQuestionRecommendationModel(IModelFunction):
         doc_splits = text_splitter.split_documents(docs_list)
         vectorstore = Chroma.from_documents(
             documents=doc_splits,
-            collection_name="ollama-mistral-nomic-embed-question-chromadb",
-            embedding=OllamaEmbeddings(model='nomic-embed-question'),
+            collection_name=f"{self.__model_name__}-chromadb",
+            embedding=OllamaEmbeddings(model='bge-m3'),
         )
         retriever = vectorstore.as_retriever()
 

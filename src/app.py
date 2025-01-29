@@ -3,6 +3,7 @@ import threading
 import sys
 import signal
 
+from src.data_factories import dynamically_register_all_data_factories
 from src.llm import dynamically_register_all_models
 
 
@@ -16,6 +17,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 def main():
     config = load_config()
+    dynamically_register_all_data_factories('src/data_factories/') # To dynamically load all data crawlers
     dynamically_register_all_models('src/llm/models/') # To dynamically load all llm models
     # Start the scheduled jobs in a separate thread
     scheduler_thread = threading.Thread(target=scheduled_job_runner)

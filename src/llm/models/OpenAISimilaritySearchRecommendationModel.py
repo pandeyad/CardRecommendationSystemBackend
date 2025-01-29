@@ -22,6 +22,7 @@ from langchain.prompts import ChatPromptTemplate
 @deprecated("Require high token count for this to process. Will revisit with a better approach.")
 class OpenAISimilaritySearchRecommendationModel(IModelFunction):
     __model_name__ = 'openai-similarity-search-model'
+    chroma_path = f"{__model_name__}-chromadb"
 
     PROMPT_TEMPLATE = """
     Answer the question based only on the following context:
@@ -39,7 +40,7 @@ class OpenAISimilaritySearchRecommendationModel(IModelFunction):
         self.key = self.get_config().get('openai', {}).get('key', '')
         if not self.key:
             raise Exception("No OpenAI Key is present. Please ensure the key is present in configuration.")
-        self.chroma_path = 'openai-chroma-collection'
+
 
 
     def prepare_model(self):
@@ -54,7 +55,7 @@ class OpenAISimilaritySearchRecommendationModel(IModelFunction):
             )
             chunks = text_splitter.split_documents(docs_list)
             print(f"Split {len(docs_list)} documents into {len(chunks)} chunks.")
-
+            self.chroma_path = f"{self.__model_name__}-chromadb"
             document = chunks[10]
             print(document.page_content)
             print(document.metadata)

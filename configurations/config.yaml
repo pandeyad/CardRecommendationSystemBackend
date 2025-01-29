@@ -13,15 +13,15 @@ data:
   base_path : './data/'
 
 model:
-  name: 'ollama-deepseek-nomic-embed-text'
+  name: 'ollama-deepseek-8b-bge-m3'
   configuration:
     ollama-mistral-nomic-embed-text:
       chunk_size: 300
       chunk_overlap: 100
-    ollama-deepseek-nomic-embed-text:
+    ollama-deepseek-8b-nomic-embed-text:
       chunk_size: 300
       chunk_overlap: 100
-    ollama-deepseek-nomic-embed-question:
+    ollama-deepseek-8b-bge-m3:
       chunk_size: 300
       chunk_overlap: 100
     openai-similarity-search-model:

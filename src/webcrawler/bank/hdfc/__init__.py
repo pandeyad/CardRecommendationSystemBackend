@@ -90,7 +90,3 @@ class HDFCBankCrawler(BankCrawler):
         except Exception as err:
             print(f"Error fetching the content: {err}")
             raise err
-
-
-if __name__ == "__main__":
-    HDFCBankCrawler(bank='hdfc').crawl_data(bank='hdfc')
