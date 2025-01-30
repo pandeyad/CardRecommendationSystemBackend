@@ -1,4 +1,4 @@
-# Credit Cars Recommendation System using RAG development
+# Credit Cards Recommendation System using RAG development
 
 ## Overview
 
